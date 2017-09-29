@@ -61,6 +61,7 @@ class ViewController: UIViewController {
         let height = NSLayoutConstraint(item: firstView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 120)
         
         NSLayoutConstraint.activate([leading,trailing,height,top])
+        
     }
     
     
