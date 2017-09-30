@@ -11,10 +11,13 @@ import UIKit
 class ViewController: UIViewController {
     
     var containerView : UIView!
+    var containerWrapper : UIView!
+    var containerChild : UIView!
     var firstLabel : UILabel!
     var secondLabel : UILabel!
     var firstButton : UIButton!
     var secondButton : UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,54 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        complexView()
+        viewWithMoreViewInside()
+    }
+    
+    func viewWithMoreViewInside(){
+        containerView = UIView()
+        containerView.backgroundColor = UIColor.blue
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(containerView)
+        
+        NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: containerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250).isActive = true
+        NSLayoutConstraint(item: containerView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 10).isActive = true
+        NSLayoutConstraint(item: containerView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: -10).isActive = true
+        
+        containerWrapper = UIView()
+        containerWrapper.backgroundColor = UIColor.orange
+        containerWrapper.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(containerWrapper)
+
+        NSLayoutConstraint(item: containerWrapper, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: containerWrapper, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: containerWrapper, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 20).isActive = true
+        NSLayoutConstraint(item: containerWrapper, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: -20).isActive = true
+        NSLayoutConstraint(item: containerWrapper, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 20).isActive = true
+        NSLayoutConstraint(item: containerWrapper, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -20).isActive = true
+        
+        firstLabel = UILabel()
+        firstLabel.backgroundColor = UIColor.brown
+        firstLabel.text = "L1";
+        firstLabel.textColor = UIColor.white
+        firstLabel.textAlignment = .center
+        firstLabel.translatesAutoresizingMaskIntoConstraints = false
+        containerWrapper.addSubview(firstLabel)
+    
+        NSLayoutConstraint(item: firstLabel, attribute: .top, relatedBy: .equal, toItem: containerWrapper, attribute: .top, multiplier: 1, constant: 10).isActive = false
+        NSLayoutConstraint(item: firstLabel, attribute: .bottom, relatedBy: .equal, toItem: containerWrapper, attribute: .bottom, multiplier: 1, constant: 10).isActive = false
+        
+        let leading = NSLayoutConstraint(item: firstLabel, attribute: .leading, relatedBy: .equal, toItem: containerWrapper, attribute: .leading, multiplier: 1.0, constant: 20.0)
+        let top1 = NSLayoutConstraint(item: firstLabel, attribute: .top, relatedBy: .equal, toItem: containerWrapper, attribute: .top, multiplier: 1.0, constant: 20.0)
+        let width1 = NSLayoutConstraint(item: firstLabel, attribute: .width, relatedBy: .equal, toItem: firstButton, attribute: .width, multiplier: 1.0, constant: 0)
+        let height1 = NSLayoutConstraint(item: firstLabel, attribute: .height, relatedBy: .equal, toItem: firstLabel, attribute: .width, multiplier: 1.2, constant: 0)
+        
+        containerView.addConstraint(leading)
+        containerView.addConstraint(top1)
+        self.view.addConstraint(width1)
+        containerWrapper.addConstraint(height1)
+        
     }
     
     func complexView() {
