@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let layout = UICollectionViewFlowLayout();
         window?.rootViewController = UINavigationController(rootViewController :
-            TwitterController(collectionViewLayout: layout));
+            LayoutAnchorController());
         return true
     }
 
