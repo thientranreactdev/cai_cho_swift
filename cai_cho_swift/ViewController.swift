@@ -12,9 +12,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-       // view.addSubview(bearImageView)
+        
         view.addSubview(descriptionTextView)
+        setupButtonControls()
         setupLayout()
     }
     
@@ -35,6 +35,31 @@ class ViewController: UIViewController {
         textView.isEditable = false
         textView.isScrollEnabled = false
         return textView
+    }()
+    
+    private let previousButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Previous", for: UIControlState.normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.gray, for: .normal)
+        return button
+    }()
+    
+    private let nextButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Next", for: UIControlState.normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.gray, for: .normal)
+        return button
+    }()
+    
+    private let pageControl : UIPageControl = {
+        let page = UIPageControl()
+        page.currentPage = 0;
+        page.numberOfPages = 4;
+        page.currentPageIndicatorTintColor = .red
+        page.pageIndicatorTintColor = .gray
+        return page;
     }()
     
     private func setupLayout(){
@@ -60,6 +85,27 @@ class ViewController: UIViewController {
         
     }
     
+ fileprivate func setupButtonControls(){
+       // view.addSubview(previousButton)
+    
+    let yellowView = UIView()
+    yellowView.backgroundColor = .yellow
+    let greenView = UIView()
+    greenView.backgroundColor = .green
+    let redView = UIView()
+    redView.backgroundColor = .red
+    let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton,pageControl,nextButton]);
+    
+    view.addSubview(bottomControlsStackView)
+    bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+    bottomControlsStackView.distribution = .fillEqually
+//    bottomControlsStackView.axis = .vertical
+    
+    bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    bottomControlsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    bottomControlsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    bottomControlsStackView.heightAnchor.constraint(equalToConstant:50).isActive = true
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
