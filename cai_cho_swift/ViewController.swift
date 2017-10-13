@@ -24,32 +24,59 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Hello World", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
+        button.backgroundColor = .orange
         return button
     }()
     let secondButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("🇻🇳", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 70)
+        button.backgroundColor = .white
         return button
     }()
     let thirdButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("😍", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 70)
+        button.backgroundColor = .orange
         return button
     }()
     let fourthButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("🎩", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 70)
+        button.backgroundColor = .white
         return button
     }()
     
     func setupConstraint() {
-        firstButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        firstButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        firstButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        let margin = view.layoutMarginsGuide
+        view.backgroundColor = UIColor.init(red: 223/255, green: 226/255, blue: 225/255, alpha: 1.0)
         
+        firstButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
+        firstButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
+        firstButton.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant:10).isActive = true
+        firstButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15).isActive = true
+        
+        secondButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
+        secondButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
+        secondButton.topAnchor.constraint(equalTo: firstButton.bottomAnchor, constant:10).isActive = true
+        secondButton.heightAnchor.constraint(equalTo: firstButton.heightAnchor).isActive = true
+        
+        thirdButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
+        thirdButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
+        thirdButton.topAnchor.constraint(equalTo: secondButton.bottomAnchor, constant:10).isActive = true
+        thirdButton.heightAnchor.constraint(equalTo: firstButton.heightAnchor).isActive = true
+        
+        fourthButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
+        fourthButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
+        fourthButton.topAnchor.constraint(equalTo: thirdButton.bottomAnchor, constant:10).isActive = true
+        fourthButton.heightAnchor.constraint(equalTo:firstButton.heightAnchor).isActive = true
     }
 
     override func didReceiveMemoryWarning() {
