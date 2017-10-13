@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
         button.backgroundColor = .orange
+        let sayHello = #selector(sayHelloWorld(_ :))
+        button.addTarget(self, action: sayHello, for: .touchUpInside)
         return button
     }()
     let secondButton : UIButton = {
@@ -35,6 +37,8 @@ class ViewController: UIViewController {
         button.setTitle("🇻🇳", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 70)
         button.backgroundColor = .white
+        let sayHello = #selector(sayHelloWorld(_ :))
+        button.addTarget(self, action: sayHello, for: .touchUpInside)
         return button
     }()
     let thirdButton : UIButton = {
@@ -43,6 +47,8 @@ class ViewController: UIViewController {
         button.setTitle("😍", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 70)
         button.backgroundColor = .orange
+        let sayHello = #selector(sayHelloWorld(_ :))
+        button.addTarget(self, action: sayHello, for: .touchUpInside)
         return button
     }()
     let fourthButton : UIButton = {
@@ -51,6 +57,8 @@ class ViewController: UIViewController {
         button.setTitle("🎩", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 70)
         button.backgroundColor = .white
+        let sayHello = #selector(sayHelloWorld(_ :))
+        button.addTarget(self, action: sayHello, for: .touchUpInside)
         return button
     }()
     
@@ -61,7 +69,7 @@ class ViewController: UIViewController {
         firstButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
         firstButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
         firstButton.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant:10).isActive = true
-        firstButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15).isActive = true
+        firstButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.20).isActive = true
         
         secondButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
         secondButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
@@ -79,6 +87,12 @@ class ViewController: UIViewController {
         fourthButton.heightAnchor.constraint(equalTo:firstButton.heightAnchor).isActive = true
     }
 
+    @objc func sayHelloWorld(_ sender: UIButton){
+        print("SAY HELLO WORLD")
+        let alertController = UIAlertController(title: "Welcome to first app", message: "Hello World", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
