@@ -33,9 +33,11 @@ class ViewController: UIViewController {
     }()
     
     let user1Image : UIImageView = {
+        let user1 = UIImage(named: "user1")
         let image = UIImageView(image: #imageLiteral(resourceName: "user1"))
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
+        image.image = user1
         return image
     }()
     
@@ -54,31 +56,54 @@ class ViewController: UIViewController {
     }()
     
     func setupView() {
-        let headerContainer = UIStackView()
-        headerContainer.addArrangedSubview(headerTitle)
-        headerContainer.translatesAutoresizingMaskIntoConstraints = false
-        headerContainer.distribution = .equalCentering
         
-        view.addSubview(headerContainer)
+        let mainContainerStackView = UIStackView()
+        mainContainerStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainContainerStackView.distribution = .fillEqually
+        
+        view.addSubview(mainContainerStackView)
         
         let margin = view.layoutMarginsGuide
-        headerContainer.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
-        headerContainer.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
-        headerContainer.topAnchor.constraint(equalTo: margin.topAnchor, constant: 20).isActive = true
-        headerContainer.heightAnchor.constraint(equalTo: view.heightAnchor, constant :20).isActive = true
+        mainContainerStackView.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
+        mainContainerStackView.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
+        mainContainerStackView.topAnchor.constraint(equalTo: margin.topAnchor, constant: 10).isActive = true
+        mainContainerStackView.bottomAnchor.constraint(equalTo: margin.bottomAnchor, constant: 10).isActive = true
         
-        let bodyContainer = UIStackView(arrangedSubviews: [user1Image, user2Image, user3Image])
+        let yellowView = UIView()
+        yellowView.backgroundColor = .yellow
+        yellowView.heightAnchor.constraint(equalToConstant: 20)
+        yellowView.widthAnchor.constraint(equalToConstant: view.frame.width)
+        yellowView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let headerContainer = UIStackView()
+        headerContainer.addArrangedSubview(yellowView)
+        headerContainer.translatesAutoresizingMaskIntoConstraints = false
+        headerContainer.distribution = .fill
+        
+         mainContainerStackView.addSubview(headerContainer)
+        
+        headerContainer.leadingAnchor.constraint(equalTo: mainContainerStackView.leadingAnchor).isActive = true
+        headerContainer.trailingAnchor.constraint(equalTo: mainContainerStackView.trailingAnchor).isActive = true
+        headerContainer.heightAnchor.constraint(equalTo: mainContainerStackView.heightAnchor, multiplier: 0.5).isActive = true
+        headerContainer.topAnchor.constraint(equalTo: mainContainerStackView.topAnchor).isActive = true
+        
+        let redView = UIView()
+        redView.backgroundColor = .red
+        redView.heightAnchor.constraint(equalToConstant: 100)
+        redView.widthAnchor.constraint(equalToConstant: view.frame.width)
+        redView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let bodyContainer = UIStackView()
+        
+        bodyContainer.addArrangedSubview(redView)
         bodyContainer.translatesAutoresizingMaskIntoConstraints = false
-        bodyContainer.distribution = .equalCentering
+        bodyContainer.distribution = .fill
         
-        view.addSubview(bodyContainer)
-        
-        bodyContainer.leadingAnchor.constraint(equalTo: margin.leadingAnchor).isActive = true
-        bodyContainer.trailingAnchor.constraint(equalTo: margin.trailingAnchor).isActive = true
-        bodyContainer.topAnchor.constraint(equalTo: headerContainer.bottomAnchor, constant: 20).isActive = true
-        bodyContainer.heightAnchor.constraint(equalTo: view.heightAnchor, constant :200).isActive = true
-        
-        
+        mainContainerStackView.addSubview(bodyContainer)
+        bodyContainer.leadingAnchor.constraint(equalTo: mainContainerStackView.leadingAnchor).isActive = true
+        bodyContainer.trailingAnchor.constraint(equalTo: mainContainerStackView.trailingAnchor).isActive = true
+        bodyContainer.heightAnchor.constraint(equalTo: mainContainerStackView.heightAnchor, multiplier: 0.5).isActive = true
+        bodyContainer.bottomAnchor.constraint(equalTo: mainContainerStackView.bottomAnchor).isActive = true
     }
 
     override func didReceiveMemoryWarning() {
