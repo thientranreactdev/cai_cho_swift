@@ -50,8 +50,9 @@ class ViewController: UIViewController {
         
         let first_view_constraint_H = NSLayoutConstraint.constraints(withVisualFormat:
             "H:|-5-[v1]-5-|", options: [], metrics: nil, views: ["v1":firstView])
-        let second_view_constraint_H = NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[v2]-5-|", options: [], metrics: nil, views: ["v2":secondView])
-        let first_and_second_constraint_V  = NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v1]-5-[v2(==v1)]-10-|", options: [], metrics: nil, views: ["v1":firstView,"v2":secondView])
+        let second_view_constraint_H = NSLayoutConstraint.constraints(withVisualFormat:
+            "H:|-5-[v2]-5-|", options: [], metrics: nil, views: ["v2":secondView])
+        let first_and_second_constraint_V = NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v1]-5-[v2(==v1)]-10-|", options: [], metrics: nil, views: ["v1":firstView,"v2":secondView])
         view.addConstraints(first_and_second_constraint_V)
         view.addConstraints(second_view_constraint_H)
         view.addConstraints(first_view_constraint_H)
