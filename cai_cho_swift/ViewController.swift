@@ -15,7 +15,41 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
+        //setUpView()
+        setUpConstraintForMultipleView()
+    }
+    
+    func setUpConstraintForMultipleView()  {
+        let firstView = UIView()
+        firstView.backgroundColor = .red
+        firstView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let secondView = UIView()
+        secondView.backgroundColor = .blue
+        secondView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let thirdView = UIView()
+        thirdView.backgroundColor = .yellow
+        thirdView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(firstView)
+        view.addSubview(secondView)
+        view.addSubview(thirdView)
+        
+        let views = [ "first" : firstView,
+            "second": secondView,
+            "third" : thirdView
+        ]
+        
+        let first_view_constraint_H = NSLayoutConstraint.constraints(withVisualFormat: "H:[first(100)]", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: views)
+        let first_view_constraint_V = NSLayoutConstraint.constraints(withVisualFormat: "V:[first(==100)]", options: .alignAllCenterX, metrics: nil, views: views)
+        let first_view_centerX_constraint = NSLayoutConstraint(item: firstView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+        let fist_view_centerY_constraint = NSLayoutConstraint(item: firstView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        view.addConstraints(first_view_constraint_V)
+        view.addConstraints(first_view_constraint_H)
+        view.addConstraint(first_view_centerX_constraint)
+        view.addConstraint(fist_view_centerY_constraint)
     }
     
     let appIcon : UIImageView = {
@@ -125,7 +159,8 @@ class ViewController: UIViewController {
         view.addConstraints(paging_constraint_V)
         
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
