@@ -41,15 +41,20 @@ class ViewController: UIViewController {
             "third" : thirdView
         ]
         
-        let first_view_constraint_H = NSLayoutConstraint.constraints(withVisualFormat: "H:[first(100)]", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: views)
-        let first_view_constraint_V = NSLayoutConstraint.constraints(withVisualFormat: "V:[first(==100)]", options: .alignAllCenterX, metrics: nil, views: views)
+        let first_view_constraint_H = NSLayoutConstraint.constraints(withVisualFormat: "H:[first(100)]", options: [], metrics: nil, views: views)
+        let first_view_constraint_V = NSLayoutConstraint.constraints(withVisualFormat: "V:[first(==100)]", options: [], metrics: nil, views: views)
         let first_view_centerX_constraint = NSLayoutConstraint(item: firstView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
         let fist_view_centerY_constraint = NSLayoutConstraint(item: firstView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        let second_view_constraint_H = NSLayoutConstraint.constraints(withVisualFormat: "H:[second(50)]", options: [], metrics: nil, views: views)
+        let second_view_constraint_V = NSLayoutConstraint.constraints(withVisualFormat: "V:[first(100)]-0-[second(50)]", options: [.alignAllCenterX], metrics: nil, views: views)
         
         view.addConstraints(first_view_constraint_V)
         view.addConstraints(first_view_constraint_H)
         view.addConstraint(first_view_centerX_constraint)
         view.addConstraint(fist_view_centerY_constraint)
+        view.addConstraints(second_view_constraint_H)
+        view.addConstraints(second_view_constraint_V)
     }
     
     let appIcon : UIImageView = {
